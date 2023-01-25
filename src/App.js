@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styles from "./style.module.css";
+import DRITracker from "./components/DRITracker"
+import FoodSearch from "./components/FoodSearch";
+import DietTracker from "./components/DietTracker";
 
 function App() {
+  const [DRITrack, setDRITrack] = useState([]);
+  const [dietTrack, setDietTrack] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className={styles.header}><h1>NUTRI-TRACKER</h1></div>
+      <DRITracker DRITrack={DRITrack} setDRITrack={setDRITrack}/>
+      <FoodSearch dietTrack={dietTrack} setDietTrack={setDietTrack}/>
+      <DietTracker dietTrack={dietTrack} setDietTrack={setDietTrack}/>
     </div>
   );
 }
