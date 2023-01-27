@@ -16,8 +16,12 @@ const FoodSearch = ({ dietTrack, setDietTrack }) => {
         setSearchResult(foods);
     }
     const addFoodToDiet = async (foodId) => {
+        // TODO: do not use getFood method, use searchResult instead (to avoid an additional request)
         const food = await getFood(foodId);
         setDietTrack([...dietTrack, food]);
+    }
+    const isAddedToDiet = (foodId) => {
+        return dietTrack.filter(x => x.fdcId === foodId).length;
     }
 
     return (
@@ -35,7 +39,7 @@ const FoodSearch = ({ dietTrack, setDietTrack }) => {
                 <button>Buscar</button>
             </form>
             <ul>
-                {searchResult.map(x => <li key={x.fdcId}>{x.description} - {x.servingSize} {x.servingSizeUnit} <button onClick={() => addFoodToDiet(x.fdcId)}>+</button></li>)}
+                {searchResult.map(x => <li key={x.fdcId}>{x.description} - {x.servingSize} {x.servingSizeUnit} <button className={isAddedToDiet(x.fdcId) ? styles.hidden : styles.visible} onClick={() => addFoodToDiet(x.fdcId)}>+</button></li>)}
             </ul>
         </div>
     )
