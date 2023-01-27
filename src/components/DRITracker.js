@@ -1,9 +1,11 @@
 import styles from "../style.module.css";
 import { useState } from "react";
 import { getDRI } from "../utils/utils.js";
+import DriItem from "./DriItem";
 
-const DRITracker = ({ DRITrack, setDRITrack }) => {
-    const [gender, setGender] = useState("");
+const DriTracker = ({ dietTrack, driTrack, setDriTrack }) => {
+    // TODO: memo driTrack
+    const [gender, setGender] = useState("female");
     const [age, setAge] = useState("");
 
     const handleChangeGender = (event) => {
@@ -16,7 +18,7 @@ const DRITracker = ({ DRITrack, setDRITrack }) => {
         event.preventDefault();
 
         const dri = getDRI(gender, age);
-        setDRITrack(dri);
+        setDriTrack(dri);
     }
 
     return (
@@ -31,7 +33,6 @@ const DRITracker = ({ DRITrack, setDRITrack }) => {
                 >
                     <option value="female">Mujer</option>
                     <option value="male">Hombre</option>
-                    <option value="inclusive">...</option>
                 </select>
                 <input
                     id="age"
@@ -47,10 +48,10 @@ const DRITracker = ({ DRITrack, setDRITrack }) => {
                 <button>Cargar</button>
             </form>
             <ul>
-                {DRITrack.map(x => <li key={x.id}>{x.nutrient} <strong>{x.dri} mg</strong></li>)}
+                {driTrack.map(item => <DriItem key={item.id} driItem={item} driTrack={driTrack} dietTrack={dietTrack} />)}
             </ul>
         </div>
     )
 }
 
-export default DRITracker;
+export default DriTracker;
