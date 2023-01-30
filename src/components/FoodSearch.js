@@ -1,28 +1,46 @@
 import styles from "../style.module.css";
 import { useState } from "react";
-import { searchFoods, getFood } from "../utils/utils.js";
+import { searchFoods, convertWeight } from "../utils/utils.js";
 
 const FoodSearch = ({ dietTrack, setDietTrack }) => {
     const [foodName, setFoodName] = useState("");
     const [searchResult, setSearchResult] = useState([]);
+    const PORTION = convertWeight(100, 'g');
 
     const handleChangeFoodName = (event) => {
         setFoodName(event.target.value);
     }
+
     const handleSearchForm = async (event) => {
         event.preventDefault();
 
         const foods = await searchFoods(foodName);
         setSearchResult(foods);
     }
+
     const addFoodToDiet = async (foodId) => {
-        // TODO: do not use getFood method, use searchResult instead (to avoid an additional request)
-        const food = await getFood(foodId);
-        food["intakeServing"] = food.servingSize;
-        setDietTrack([...dietTrack, food]);
+        const food = searchResult.find(x => x.fdcId === foodId);
+
+        if (food) {
+            const trackingReadyFood = prepareNutrientTracking(food);
+            setDietTrack([...dietTrack, trackingReadyFood]);
+        }
     }
+
     const isAddedToDiet = (foodId) => {
         return dietTrack.filter(x => x.fdcId === foodId).length;
+    }
+
+    // INFO: prepare food object for nutrient tracking
+    const prepareNutrientTracking = (food) => {
+        food["intakeServing"] = food.servingSize;
+
+        for(let nutrient of food.foodNutrients) {
+            const unit = PORTION[nutrient.unitName.toLowerCase()];
+            nutrient["valueByUnit"] = unit ? (nutrient.value / unit) : 0;
+        }
+
+        return food;
     }
 
     return (

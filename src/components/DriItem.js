@@ -7,17 +7,17 @@ const DriItem = ({ driItem, dietTrack }) => {
     const [nutrientIntake, setNutrientIntake] = useState(0);
     const [driNutrientPercentage, setDriNutrientPercentage] = useState(0);
 
-    const calculateDriPercentage = useCallback(() => {
-        // TODO: use DietItem servigSize state
-        const foodNutrients = dietTrack.map(x => x.foodNutrients);
-        const nutrientId = nutrientMapping.filter(m => m.nutrient === driItem.nutrient)[0];
-        const nutrientIntakeAcc = foodNutrients.reduce((total, item) => {
-            const itemNutrient = item.filter(n => (
-                n.type === "FoodNutrient" && n.nutrient.id === nutrientId.api_code
-            ));
-            const nutrientRank = itemNutrient.length ? itemNutrient[0].nutrient.rank : 0;
-            return total + nutrientRank;
-        }, 0);
+    const trackDri = useCallback(() => {
+        let nutrientIntakeAcc = 0;
+        const nutrientId = nutrientMapping.find(m => m.nutrient === driItem.nutrient);
+        
+        for (const dtItem of dietTrack) {
+            const foodNutrients = dtItem.foodNutrients.filter(n => n.nutrientId === nutrientId.api_code);
+            nutrientIntakeAcc = foodNutrients.reduce((total, item) => {
+                const nutrientTotal = (item.valueByUnit || 0) * dtItem.intakeServing;
+                return total + nutrientTotal;
+            }, nutrientIntakeAcc);
+        }
         const percentage = Math.round((nutrientIntakeAcc / driItem.dri) * 100);
 
         setNutrientIntake(nutrientIntakeAcc);
@@ -25,8 +25,8 @@ const DriItem = ({ driItem, dietTrack }) => {
     }, [driItem, dietTrack]);
 
     useEffect(() => {
-        calculateDriPercentage();
-    }, [calculateDriPercentage]);
+        trackDri();
+    }, [trackDri]);
 
     return (
         <div>
