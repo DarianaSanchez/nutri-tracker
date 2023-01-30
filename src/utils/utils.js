@@ -36,3 +36,27 @@ export async function getFood(foodId) {
 
   return data
 }
+
+export function convertWeight(amount, unit) {
+  let allUnits = {};
+  allUnits['g'] = allUnits['mg'] = allUnits['mcg'] = amount;
+
+  switch(unit) {
+    case 'g':
+      allUnits['mg'] = amount * 1000;
+      allUnits['mcg'] = amount * 1000000;
+      break;
+    case 'mg':
+      allUnits['g'] = amount / 1000;
+      allUnits['mcg'] = amount * 1000;
+      break;
+    case 'mcg':
+      allUnits['g'] = amount / 1000000;
+      allUnits['mg'] = amount / 1000;
+      break;
+    default:
+      break;
+  }
+
+  return allUnits;
+}
