@@ -38,24 +38,26 @@ export async function getFood(foodId) {
 }
 
 export function convertWeight(amount, unit) {
-  let allUnits = {};
-  allUnits['g'] = allUnits['mg'] = allUnits['mcg'] = amount;
+  if (unit) {
+    unit = unit.toLowerCase();
+  } else {
+    return false;
+  }
 
-  switch(unit) {
-    case 'g':
-      allUnits['mg'] = amount * 1000;
-      allUnits['mcg'] = amount * 1000000;
-      break;
-    case 'mg':
-      allUnits['g'] = amount / 1000;
-      allUnits['mcg'] = amount * 1000;
-      break;
-    case 'mcg':
-      allUnits['g'] = amount / 1000000;
-      allUnits['mg'] = amount / 1000;
-      break;
-    default:
-      break;
+  let allUnits = {};
+  allUnits['g'] = allUnits['mg'] = allUnits['mcg'] = allUnits['µg'] = amount;
+
+  if (unit === 'g') {
+    allUnits['mg'] = amount * 1000;
+    allUnits['mcg'] = allUnits['µg'] = amount * 1000000;
+  } else if (unit === 'mg') {
+    allUnits['g'] = amount / 1000;
+    allUnits['mcg'] = allUnits['µg'] = amount * 1000;
+  } else if (unit === 'mcg' || unit === 'µg') {
+    allUnits['g'] = amount / 1000000;
+    allUnits['mg'] = amount / 1000;
+  } else {
+    return false;
   }
 
   return allUnits;
