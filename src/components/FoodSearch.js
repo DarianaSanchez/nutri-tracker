@@ -18,6 +18,7 @@ const FoodSearch = ({ dietTrack, setDietTrack }) => {
     const addFoodToDiet = async (foodId) => {
         // TODO: do not use getFood method, use searchResult instead (to avoid an additional request)
         const food = await getFood(foodId);
+        food["intakeServing"] = food.servingSize;
         setDietTrack([...dietTrack, food]);
     }
     const isAddedToDiet = (foodId) => {

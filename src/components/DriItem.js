@@ -11,11 +11,11 @@ const DriItem = ({ driItem, dietTrack }) => {
         // TODO: use DietItem servigSize state
         const foodNutrients = dietTrack.map(x => x.foodNutrients);
         const nutrientId = nutrientMapping.filter(m => m.nutrient === driItem.nutrient)[0];
-        const nutrientIntakeAcc = foodNutrients.reduce((total, dietItem) => {
-            const itemNutrient = dietItem.filter(n => (
+        const nutrientIntakeAcc = foodNutrients.reduce((total, item) => {
+            const itemNutrient = item.filter(n => (
                 n.type === "FoodNutrient" && n.nutrient.id === nutrientId.api_code
             ));
-            const nutrientRank = itemNutrient.length ? itemNutrient[0].nutrient.rank : 0; 
+            const nutrientRank = itemNutrient.length ? itemNutrient[0].nutrient.rank : 0;
             return total + nutrientRank;
         }, 0);
         const percentage = Math.round((nutrientIntakeAcc / driItem.dri) * 100);
