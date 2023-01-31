@@ -37,6 +37,10 @@ export async function getFood(foodId) {
   return data
 }
 
+export function round(num, pos) {
+  return parseFloat(num.toFixed(pos || 2));
+};
+
 export function convertWeight(amount, unit) {
   if (unit) {
     unit = unit.toLowerCase();
