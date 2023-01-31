@@ -4,7 +4,6 @@ import { getDRI } from "../utils/utils.js";
 import DriItem from "./DriItem";
 
 const DriTracker = ({ dietTrack }) => {
-    // TODO: memo driTrack
     const [driTrack, setDriTrack] = useState([]); 
     const [gender, setGender] = useState("female");
     const [age, setAge] = useState("");

@@ -1,5 +1,5 @@
 // import styles from "../style.module.css";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const DietItem = ({ dietItem, dietTrack, setDietTrack }) => {
     const [intakeServing, setIntakeServing] = useState(dietItem.servingSize);
@@ -41,4 +41,4 @@ const DietItem = ({ dietItem, dietTrack, setDietTrack }) => {
     )
 }
 
-export default DietItem;
+export default React.memo(DietItem);
