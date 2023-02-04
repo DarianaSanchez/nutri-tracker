@@ -1,10 +1,5 @@
 import driData from '../data/dri_db.json'
 
-// TODO: make these config values
-const API_KEY = '2FKsAypWtW6GUN6SHe0AECjHK3xOFtkaG9Jas0x8'
-const API_URL_SEARCH_FOOD = 'https://api.nal.usda.gov/fdc/v1/foods/search'
-const API_URL_FOOD_INFO = 'https://api.nal.usda.gov/fdc/v1/food'
-
 export function getDRI(gender, age) {
   return driData.filter(record => (
     (record.gender === '*' || record.gender === gender)
@@ -14,11 +9,11 @@ export function getDRI(gender, age) {
 
 export async function searchFoods(foodName) {
   const params = new URLSearchParams({
-    'api_key': API_KEY,
+    'api_key': process.env.REACT_APP_API_KEY,
     'query': foodName,
   })
   const data = await fetch(
-    `${API_URL_SEARCH_FOOD}?${params}`
+    `${process.env.REACT_APP_API_URL_SEARCH_FOOD}?${params}`
   ).then((response) => response.json());
 
   return data.foods
@@ -28,10 +23,10 @@ export async function searchFoods(foodName) {
 
 export async function getFood(foodId) {
   const params = new URLSearchParams({
-    'api_key': API_KEY,
+    'api_key': process.env.REACT_APP_API_KEY,
   })
   const data = await fetch(
-    `${API_URL_FOOD_INFO}/${foodId}?${params}`
+    `${process.env.REACT_APP_API_URL_FOOD_INFO}/${foodId}?${params}`
   ).then((response) => response.json());
 
   return data
