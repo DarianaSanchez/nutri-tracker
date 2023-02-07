@@ -1,0 +1,96 @@
+.body {
+  margin: 0;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 1fr 1fr 50px;
+
+  gap: 10px;
+  padding: 10px;
+}
+
+.container .layout {
+  padding: 10px;
+  border: 1px solid #000000;
+}
+
+.header {
+  grid-column: 1 / span 3;
+  color: whitesmoke;
+  background-color: black;
+}
+
+.container-long {
+  grid-row: 2 / span 2;
+}
+
+.container-wide {
+  grid-column: 2 / span 2;
+}
+
+.footer {
+  grid-column: 1 / span 3;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 11px;
+  font-weight: lighter;
+  font-style: italic;
+  border: 0px !important;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 0.3em;
+  margin-bottom: 0.4em;
+}
+
+form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+form input, select {
+  margin: 5px 10px 5px 0;
+  padding: 5px;
+}
+
+form button {
+  font-size: 12px;
+  padding: 7px 11px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-weight: bolder;
+  border-radius: 3px;
+}
+
+form button:hover {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+@media (max-width: 800px) {
+  form input, select {
+     margin: 10px 0;
+  }
+  form {
+     flex-direction: column;
+     align-items: stretch;
+  }
+}

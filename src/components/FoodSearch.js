@@ -1,4 +1,4 @@
-import styles from "../style.module.css";
+import '../style.css';
 import { useState } from "react";
 import { searchFoods, convertWeight } from "../utils/utils.js";
 
@@ -44,7 +44,7 @@ const FoodSearch = ({ dietTrack, setDietTrack }) => {
     }
 
     return (
-        <div className={styles.section}>
+        <div>
             <form onSubmit={handleSearchForm}>
                 <input
                     id="food"
@@ -52,13 +52,13 @@ const FoodSearch = ({ dietTrack, setDietTrack }) => {
                     value={foodName}
                     onChange={handleChangeFoodName}
                     maxLength="50"
-                    placeholder="Alimento..."
+                    placeholder="food name..."
                     required
                 />
-                <button>Buscar</button>
+                <button>Search</button>
             </form>
             <ul>
-                {searchResult.map(x => <li key={x.fdcId}>{x.description} - {x.servingSize} {x.servingSizeUnit} <button className={isAddedToDiet(x.fdcId) ? styles.hidden : styles.visible} onClick={() => addFoodToDiet(x.fdcId)}>+</button></li>)}
+                {searchResult.map(x => <li key={x.fdcId}>{x.description} - {x.servingSize} {x.servingSizeUnit} <button className={isAddedToDiet(x.fdcId) ? "hidden" : "visible"} onClick={() => addFoodToDiet(x.fdcId)}>+</button></li>)}
             </ul>
         </div>
     )

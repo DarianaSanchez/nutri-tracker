@@ -1,4 +1,3 @@
-// import styles from "../style.module.css";
 import React, { useState } from "react";
 
 const DietItem = ({ dietItem, dietTrack, setDietTrack }) => {

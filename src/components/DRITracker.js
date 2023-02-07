@@ -1,4 +1,4 @@
-import styles from "../style.module.css";
+import '../style.css';
 import { useState } from "react";
 import { getDRI } from "../utils/utils.js";
 import DriItem from "./DriItem";
@@ -22,7 +22,7 @@ const DriTracker = ({ dietTrack }) => {
     }
 
     return (
-        <div className={styles.section}>
+        <div>
             <form onSubmit={handleForm}>
                 <select 
                     id="gender"
@@ -31,8 +31,8 @@ const DriTracker = ({ dietTrack }) => {
                     onChange={handleChangeGender}
                     required
                 >
-                    <option value="female">Mujer</option>
-                    <option value="male">Hombre</option>
+                    <option value="female">female</option>
+                    <option value="male">male</option>
                 </select>
                 <input
                     id="age"
@@ -42,10 +42,10 @@ const DriTracker = ({ dietTrack }) => {
                     onChange={handleChangeAge}
                     min="1"
                     max="500"
-                    placeholder="Edad"
+                    placeholder="age"
                     required
                 />
-                <button>Cargar</button>
+                <button>Show my DRI</button>
             </form>
             <ul>
                 {driTrack.map(item => <DriItem key={item.id} driItem={item} driTrack={driTrack} dietTrack={dietTrack} />)}
