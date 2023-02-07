@@ -1,4 +1,3 @@
-import '../style.css';
 import DietItem from "./DietItem";
 
 const DietTracker = ({ dietTrack, setDietTrack }) => {

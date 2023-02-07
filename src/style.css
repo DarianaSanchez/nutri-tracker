@@ -72,11 +72,11 @@ form input, select {
 }
 
 form button {
+  font-weight: bolder;
   font-size: 12px;
   padding: 7px 11px;
   border: 1px solid #ddd;
   cursor: pointer;
-  font-weight: bolder;
   border-radius: 3px;
 }
 
@@ -93,4 +93,57 @@ form button:hover {
      flex-direction: column;
      align-items: stretch;
   }
+}
+
+button.add-button, button.remove-button {
+  display: inline-flex;
+  cursor: pointer;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 16px;
+  margin: 4px;
+  padding: 3px 8px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+button.add-button:hover {
+  color: #ffffff;
+  background-color: #5aa355;
+}
+
+button.remove-button:hover {
+  color: #ffffff;
+  background-color: #dd5035;
+}
+
+input.inline-input {
+  display: inline-flex;
+  margin: 10px 5px 5px 15px;
+  padding: 5px;
+}
+
+div.nutrient-percentage {
+  display: inline-flex;
+  margin: 8px 0px;
+}
+
+div.nutrient-percentage > span {
+  margin: 0px 0px 0px 10px;
+}
+
+table {
+  margin-top: 20px;
+}
+
+th, td {
+  text-align: start;
+  padding-right: 20px;
+}
+
+th {
+  font-weight: 100;
+  background-color: #f2f2f2;
 }

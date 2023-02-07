@@ -58,7 +58,7 @@ const FoodSearch = ({ dietTrack, setDietTrack }) => {
                 <button>Search</button>
             </form>
             <ul>
-                {searchResult.map(x => <li key={x.fdcId}>{x.description} - {x.servingSize} {x.servingSizeUnit} <button className={isAddedToDiet(x.fdcId) ? "hidden" : "visible"} onClick={() => addFoodToDiet(x.fdcId)}>+</button></li>)}
+                {searchResult.map(x => <li key={x.fdcId}>{x.description} - {x.servingSize} {x.servingSizeUnit} <button className={"add-button " + (isAddedToDiet(x.fdcId) ? "hidden" : "visible")} onClick={() => addFoodToDiet(x.fdcId)}>+</button></li>)}
             </ul>
         </div>
     )

@@ -1,3 +1,4 @@
+import '../style.css';
 import React, { useState } from "react";
 
 const DietItem = ({ dietItem, dietTrack, setDietTrack }) => {
@@ -24,7 +25,7 @@ const DietItem = ({ dietItem, dietTrack, setDietTrack }) => {
 
     return (
         <div>
-            <p>{dietItem.description}</p>
+            <span>{dietItem.description}</span>
             <input
                 id={"serving_" + dietItem.fdcId}
                 name={"serving_" + dietItem.fdcId}
@@ -32,10 +33,12 @@ const DietItem = ({ dietItem, dietTrack, setDietTrack }) => {
                 value={intakeServing}
                 onChange={handleChangeServing}
                 min="0.1"
+                max="999"
                 required
                 placeholder="grams"
+                className="inline-input"
             />grs
-            <button onClick={() => removeFoodFromDiet()}>x</button>
+            <button className="remove-button" onClick={() => removeFoodFromDiet()}>x</button>
         </div>
     )
 }

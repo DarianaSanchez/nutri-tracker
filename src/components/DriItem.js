@@ -1,4 +1,4 @@
-// import styles from "../style.module.css";
+import '../style.css';
 import React, { useState, useEffect, useCallback } from "react";
 import { convertWeight, round } from "../utils/utils.js";
 
@@ -29,9 +29,12 @@ const DriItem = ({ driItem, dietTrack }) => {
     }, [trackDri]);
 
     return (
-        <div>
-            <li key={driItem.id}>{driItem.description} <strong>{driItem.dri}{driItem.unit} - {nutrientIntake}{driItem.unit} - {driNutrientPercentage}%</strong></li>
-        </div>
+        <tr key={driItem.id}>
+            <td>{driItem.description}</td>
+            <td><strong>{driItem.dri}{driItem.unit}</strong></td>
+            <td><strong>{nutrientIntake}{driItem.unit}</strong></td>
+            <td><strong><div className="nutrient-percentage"><progress min="0" max="100" value={driNutrientPercentage}></progress><span>{driNutrientPercentage}%</span></div></strong></td>
+        </tr>
     )
 }
 

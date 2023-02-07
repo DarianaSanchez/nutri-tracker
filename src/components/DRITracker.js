@@ -47,9 +47,19 @@ const DriTracker = ({ dietTrack }) => {
                 />
                 <button>Show my DRI</button>
             </form>
-            <ul>
-                {driTrack.map(item => <DriItem key={item.id} driItem={item} driTrack={driTrack} dietTrack={dietTrack} />)}
-            </ul>
+            <table className={driTrack.length ? "visible" : "hidden"}>
+                <thead>
+                    <tr>
+                        <th>Nutrient</th>
+                        <th>DRI</th>
+                        <th>Intake</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {driTrack.map(item => <DriItem key={item.id} driItem={item} driTrack={driTrack} dietTrack={dietTrack} />)}
+                </tbody>
+            </table>
         </div>
     )
 }
