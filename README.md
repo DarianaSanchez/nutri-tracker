@@ -20,3 +20,8 @@ Application to track nutrient intake in diet of the day
 ### To Run
 
 To run this app you will only need to define the environment variables listed in the .env (API key from USDA), and run it as a normal ReactJS application (https://beta.reactjs.org/learn/start-a-new-react-project).
+
+
+### References 
+
+- https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/dietary-reference-intakes/tables.html
